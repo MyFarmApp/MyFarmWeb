@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Log in to MyFarm</title>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+  <link rel="stylesheet" href="css/dash.css">
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyD1yoAFtxFUADWtuKznOKuYdzz0-l0PNHM",
+      authDomain: "myfarmapp-crops.firebaseapp.com",
+      databaseURL: "https://myfarmapp-crops.firebaseio.com",
+      projectId: "myfarmapp-crops",
+      storageBucket: "myfarmapp-crops.appspot.com",
+      messagingSenderId: "312486482612",
+      appId: "1:312486482612:web:6f319cc3281759cf367de1",
+      measurementId: "G-K5MRECZWK9"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.5.0/firebase-ui-auth.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.5.0/firebase-ui-auth.css" />
+  <script type="text/javascript">
+    // FirebaseUI config.
+    var uiConfig = {
+      signInSuccessUrl: 'dashboard.html',
+      signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.auth.GithubAuthProvider.PROVIDER_ID
+      ],
+    };
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    ui.start('#firebaseui-auth-container', uiConfig);
+  </script>
+</head>
+
+<body>
+  <h1>Log in to MyFarm</h1>
+  <div id="firebaseui-auth-container"></div>
+</body>
+
+</html>

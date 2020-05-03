@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+body {
+  text-align: center;
+  padding: 10px;
+  font-family: 'Oswald', sans-serif;
+}
+
+h1 {
+  color: #00a1de;
+}
+
+h2 {
+  color: #009b3a;
+}
+
+h3 {
+  color: #c60c30;
+}
+
+#firebaseui-auth-container {
+  border-radius: 25px;
+  background-color: #009b3a;
+  padding: 10px;
+  width: 50%;
+  margin: auto;
+}
