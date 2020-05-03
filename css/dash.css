@@ -29,3 +29,8 @@ h3 {
   width: 50%;
   margin: auto;
 }
+
+:root {
+  mdc-theme--primary: #00a1de;
+  mdc-theme--primary-bg	: #009b3a;
+}

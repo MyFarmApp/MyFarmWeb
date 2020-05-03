@@ -38,6 +38,9 @@
     firebase.analytics();
   </script>
   <script type="text/javascript">
+    function search(){
+      window.location.href = "freesearch.html?q=" + encodeURI(document.querySelector('#asearch').value);
+    }
     initApp = function() {
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -74,20 +77,23 @@
   <video autoplay muted loop id="vid">
     <source src="backg.mp4" type="video/mp4">
   </video>
+  <h1 style="clear:both">MyFarm</h1>
   <div style="float:left;">
     <h2>MyFarm helps farmers around the world grow crops!</h2>
     <p>It's a free app that helps everyone find the best crops to grow. And it's 100% FREE. In addition to which crops to grow, you'll also get information on when and how to grow certain crops. Plus, MyFarm has an easy-to-use desktop app. You can
       save your crop data from the cloud, straight to your computer! MyFarm is the essential tool for any farmer.</p>
-    <img src="hero.jpeg" alt="Smiling REAL FARMER!!!!!!!!!!!!" height="150px">
-    <img src="hero2.jpg" alt="Another Smiling REAL FARMER!!!!!!!!!!!!" height="200px">
-    <img src="hero3.jpg" alt="ANOTHER Smiling REAL FARMER!!!!!!!!!!!! (You can tell this is copy-paste, right?)" height="300px">
+    <img src="hero.jpeg" alt="Smiling REAL FARMER!!!!!!!!!!!!" height="100px">
+    <img src="hero2.jpg" alt="Another Smiling REAL FARMER!!!!!!!!!!!!" height="150px">
+    <img src="hero3.jpg" alt="ANOTHER Smiling REAL FARMER!!!!!!!!!!!! (You can tell this is copy-paste, right?)" height="200px">
     <img src="hero4.jpg" alt="ONE MORE Smiling REAL FARMER!!!!!!!!!!!!" height="100px">
   </div>
   <div style="float:right;">
     <h2>It's easy and free!</h2>
     <button><img src="aicon.svg" alt="A" class="gamepad" /> Sign up now!</button>
+    <h2>Or try it out for free!</h2>
+    <input type="search" id="asearch" value="Search for a plant...">
+    <button type="button" id="submitfree" onclick="search()">Search</button>
   </div>
-  <h1 style="clear:both">MyFarm</h1>
 </body>
 
 </html>

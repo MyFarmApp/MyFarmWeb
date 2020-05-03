@@ -61,9 +61,7 @@
               });
           });
         } else {
-          document.querySelector("button").onclick = function() {
-            window.location.href = "login.html";
-          }
+          window.location.href = "login.html";
         }
       }, function(error) {
         console.log(error);
@@ -88,9 +86,29 @@
           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">restaurant</i>
           <span class="mdc-list-item__text">Crops</span>
         </a>
-        <a class="mdc-list-item" href="flowers.html">
+        <a class="mdc-list-item" href="guide.html">
           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">local_florist</i>
-          <span class="mdc-list-item__text">Flowers</span>
+          <span class="mdc-list-item__text">Guide to growing</span>
+        </a>
+        <a class="mdc-list-item" href="flowers.html">
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">map</i>
+          <span class="mdc-list-item__text">Seasons</span>
+        </a>
+        <a class="mdc-list-item" href="desktop.html">
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">desktop_windows</i>
+          <span class="mdc-list-item__text">Desktop App</span>
+        </a>
+        <a class="mdc-list-item" onclick="firebase.auth().signOut();">
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">exit_to_app</i>
+          <span class="mdc-list-item__text">Log Out</span>
+        </a>
+        <a class="mdc-list-item" href="loc.html">
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">my_location</i>
+          <span class="mdc-list-item__text">Change Location</span>
+        </a>
+        <a class="mdc-list-item" href="yard.html">
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">tram</i>
+          <span class="mdc-list-item__text">The 'Yard'</span>
         </a>
       </nav>
     </div>
