@@ -60,7 +60,7 @@ input {
   clear: both;
 }
 
-article {
+article, .art-no5 {
   border-radius: 25px;
   background-color: #00a1de;
   width: 95%;
