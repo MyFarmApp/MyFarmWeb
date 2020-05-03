@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/dash.css">
+  <title>MyFarm</title>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+  <script src="https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js" charset="utf-8"></script>
+  <script src="gamepad.js" charset="utf-8"></script>
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <script>
+    const gamepad = new Gamepad();
+    Mousetrap.bind('up up down down left right left right b a enter', function() {
+      alert("BEEP");
+    });
+    gamepad.on('connect', () => {
+      document.querySelector(".gamepad").style.display = "block";
+    });
+    gamepad.on('disconnect', () => {
+      document.querySelector(".gamepad").style.display = "none";
+    });
+    var firebaseConfig = {
+      apiKey: "AIzaSyD1yoAFtxFUADWtuKznOKuYdzz0-l0PNHM",
+      authDomain: "myfarmapp-crops.firebaseapp.com",
+      databaseURL: "https://myfarmapp-crops.firebaseio.com",
+      projectId: "myfarmapp-crops",
+      storageBucket: "myfarmapp-crops.appspot.com",
+      messagingSenderId: "312486482612",
+      appId: "1:312486482612:web:6f319cc3281759cf367de1",
+      measurementId: "G-K5MRECZWK9"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    var db = firebase.firestore();
+  </script>
+  <script type="text/javascript">
+    var uid;
+    initApp = function() {
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          var displayName = user.displayName;
+          var email = user.email;
+          var emailVerified = user.emailVerified;
+          var photoURL = user.photoURL;
+          uid = user.uid;
+          var phoneNumber = user.phoneNumber;
+          var providerData = user.providerData;
+          user.getIdToken().then(function(accessToken) {
+            console.log(uid);
+          });
+        } else {
+          document.querySelector("button").onclick = function() {
+            window.location.href = "login.html";
+          }
+        }
+      }, function(error) {
+        console.log(error);
+      });
+    };
+
+    window.addEventListener('load', function() {
+      initApp();
+    });
+
+    function save() {
+      console.log("save");
+      if (document.querySelector("input").value.match(/(1|2|3|4|5|6|7|8|9|10|11|12|13)(a|b)/g)) {
+        db.collection(uid).doc("basics").set({
+          zone: document.querySelector("input").value
+        }).then(function() {
+          window.location.href = "dashboard.html";
+        })
+      } else {
+        alert("That's not a valid zone!")
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <aside class="mdc-drawer">
+    <div class="mdc-drawer__content">
+      <nav class="mdc-list">
+        <a class="mdc-list-item mdc-list-item--activated" href="#" aria-current="page">
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">my_location</i>
+          <span class="mdc-list-item__text">Location Select</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+  <h1>Please tell us where you live:</h1>
+  <h2>This helps us improve our reccomendations.</h2>
+  <h3>Find your zone on the map below and enter it in the textbox, in the format '[zonenumber][a/b]', for example 13a or 2b.</h3>
+  <img src="https://planthardiness.ars.usda.gov/PHZMWeb/Images/All_states_halfzones_poster_300dpi.jpg" alt="Plant zones!" height="300px" />
+  <br />
+  <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
+    <i class="material-icons mdc-text-field__icon mdc-text-field__icon--leading" tabindex="0" role="button">person_pin</i>
+    <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+    <div class="mdc-notched-outline">
+      <div class="mdc-notched-outline__leading"></div>
+      <div class="mdc-notched-outline__notch">
+      </div>
+      <div class="mdc-notched-outline__trailing"></div>
+    </div>
+  </label>
+  <div class="mdc-touch-target-wrapper" onclick="save();">
+    <button class="mdc-button mdc-button--touch">
+      <div class="mdc-button__ripple"></div>
+      <a class="mdc-button__label">Save to profile</a>
+      <div class="mdc-button__touch"></div>
+    </button>
+  </div>
+</body>
+
+</html>
