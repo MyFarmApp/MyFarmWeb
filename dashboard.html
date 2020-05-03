@@ -60,6 +60,7 @@
                 }
               });
           });
+          document.querySelector('.name').innerHTML = displayName.split(" ")[0];
         } else {
           window.location.href = "login.html";
         }
@@ -82,18 +83,6 @@
           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
           <span class="mdc-list-item__text">Home</span>
         </a>
-        <a class="mdc-list-item" href="crops.html">
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">restaurant</i>
-          <span class="mdc-list-item__text">Crops</span>
-        </a>
-        <a class="mdc-list-item" href="guide.html">
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">local_florist</i>
-          <span class="mdc-list-item__text">Guide to growing</span>
-        </a>
-        <a class="mdc-list-item" href="flowers.html">
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">map</i>
-          <span class="mdc-list-item__text">Seasons</span>
-        </a>
         <a class="mdc-list-item" href="desktop.html">
           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">desktop_windows</i>
           <span class="mdc-list-item__text">Desktop App</span>
@@ -109,6 +98,7 @@
       </nav>
     </div>
   </aside>
+  <h1>Welcome to MyFarm, <span class="name"></span>!</h1>
 </body>
 
 </html>
