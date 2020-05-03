@@ -55,3 +55,21 @@ button, input {
 input {
   background-color: #00a1de;
 }
+
+.cleared {
+  clear: both;
+}
+
+article {
+  border-radius: 25px;
+  background-color: #00a1de;
+  width: 95%;
+  padding: 10px;
+  margin: auto;
+}
+
+th, td {
+  border: 3px solid #c60c30;
+  border-collapse: collapse;
+  padding: 3px;
+}

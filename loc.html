@@ -70,10 +70,92 @@
     });
 
     function save() {
-      console.log("save");
       if (document.querySelector("input").value.match(/(1|2|3|4|5|6|7|8|9|10|11|12|13)(a|b)/g)) {
+        var avgtmp;
+        switch (document.querySelector("input").value) {
+          case "1a":
+            avgtmp = "-60/-55";
+            break;
+          case "1b":
+            avgtmp = "-55/-50";
+            break;
+          case "2a":
+            avgtmp = "-50/-45";
+            break;
+          case "2b":
+            avgtmp = "-45/-40";
+            break;
+          case "3a":
+            avgtmp = "-40/-35";
+            break;
+          case "3b":
+            avgtmp = "-35/-30";
+            break;
+          case "4a":
+            avgtmp = "-30/-25";
+            break;
+          case "4b":
+            avgtmp = "-25/-20";
+            break;
+          case "5a":
+            avgtmp = "-20/-15";
+            break;
+          case "5b":
+            avgtmp = "-15/-10";
+            break;
+          case "6a":
+            avgtmp = "-10/-5";
+            break;
+          case "6b":
+            avgtmp = "-5/0";
+            break;
+          case "7a":
+            avgtmp = "0/5";
+            break;
+          case "7b":
+            avgtmp = "5/10";
+            break;
+          case "8a":
+            avgtmp = "10/15";
+            break;
+          case "8b":
+            avgtmp = "15/20";
+            break;
+          case "9a":
+            avgtmp = "20/25";
+            break;
+          case "9b":
+            avgtmp = "25/30";
+            break;
+          case "10a":
+            avgtmp = "30/35";
+            break;
+          case "10b":
+            avgtmp = "35/40";
+            break;
+          case "11a":
+            avgtmp = "40/45";
+            break;
+          case "11b":
+            avgtmp = "45/50";
+            break;
+          case "12a":
+            avgtmp = "50/55";
+            break;
+          case "12b":
+            avgtmp = "55/60";
+            break;
+          case "13a":
+            avgtmp = "60/65";
+            break;
+          case "13b":
+            avgtmp = "65/70";
+            break;
+
+        }
         db.collection(uid).doc("basics").set({
-          zone: document.querySelector("input").value
+          zone: document.querySelector("input").value,
+          temp: avgtmp
         }).then(function() {
           window.location.href = "dashboard.html";
         })
