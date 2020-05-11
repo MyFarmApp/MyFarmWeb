@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Oswald&display=swap');
 
+/* Cursor Effect for homepg. */
+.txt-type>.txt {
+  border-right: 0.2rem solid #c60c30;
+}
+
 .gamepad {
   display: none;
 }
