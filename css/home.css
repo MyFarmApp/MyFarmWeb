@@ -9,6 +9,10 @@
   display: none;
 }
 
+#info {
+  font-family: serif;
+}
+
 body {
   text-align: center;
   padding: 10px;

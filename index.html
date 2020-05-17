@@ -79,10 +79,14 @@
     <source src="backg.mp4" type="video/mp4">
   </video>
   <h1 style="clear:both">MyFarm</h1>
+  <input type="search" id="asearch" value="Search for a plant...">
+  <button type="button" id="submitfree" onclick="search()">Search</button>
   <div style="float:left;">
     <h2>MyFarm helps farmers <span class="txt-type" data-words='["find crops to grow.", "figure out how to grow crops.","search for plants and crops."]' data-wait="1000"></span></h2>
     <p>It's a free app that helps everyone find the best crops to grow. And it's 100% FREE. In addition to which crops to grow, you'll also get information on when and how to grow certain crops. Plus, MyFarm has an easy-to-use desktop app. You can
       save your crop data from the cloud, straight to your computer! MyFarm is the essential tool for any farmer.</p>
+    <button onclick="document.querySelector('#about').style.display = 'block'"><i id="info">i</i> More Information</button>
+    <br />
     <img src="hero.jpeg" alt="Smiling REAL FARMER!!!!!!!!!!!!" height="100px">
     <img src="hero2.jpg" alt="Another Smiling REAL FARMER!!!!!!!!!!!!" height="150px">
     <img src="hero3.jpg" alt="ANOTHER Smiling REAL FARMER!!!!!!!!!!!! (You can tell this is copy-paste, right?)" height="90px">
@@ -91,12 +95,9 @@
   <div style="float:right;">
     <h2>Get started now for FREE!</h2>
     <button><img src="aicon.svg" alt="A" class="gamepad" /> Sign up now!</button>
-    <h2>Or try it out - no account required!</h2>
-    <input type="search" id="asearch" value="Search for a plant...">
-    <button type="button" id="submitfree" onclick="search()">Search</button>
   </div>
   <br /><br /><br />
-  <article class="cleared art-no5">
+  <article class="cleared art-no5" id="about" style="display:none;">
     <h2>What is MyFarm?</h2>
     <h3>Who we are</h3>
     <b>Samuel Sharp</b><br />
