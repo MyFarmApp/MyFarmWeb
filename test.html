@@ -8,7 +8,7 @@
   <script type="text/javascript">
     function go() {
       var xhr = new XMLHttpRequest();
-      xhr.open('POST', 'https://api.myfarmapp.tk/api/v1/' + document.querySelector('#url').value + '?token=' + document.querySelector('#token').value, true);
+      xhr.open('GET', 'https://api.myfarmapp.tk/api/v1/' + document.querySelector('#url').value + '?token=' + document.querySelector('#token').value, true);
       xhr.onload = function() {
         console.log(xhr.data);
       };
