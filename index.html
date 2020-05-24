@@ -40,7 +40,7 @@
   </script>
   <script type="text/javascript">
     function search() {
-      window.location.href = "freesearch.html?q=" + encodeURI(document.querySelector('#asearch').value);
+      window.location.href = "freesearch.html?q=" + encodeURI(document.querySelector('#asearch').value.toLowerCase());
     }
     initApp = function() {
       firebase.auth().onAuthStateChanged(function(user) {
