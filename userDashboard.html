@@ -12,9 +12,9 @@
 <body>
     <div class = "wrapper">
         <div class = "sidebar">
-        <h2>MY FARM</h2>
+        <h1>MY FARM</h1>
         <ul>
-            <li><a href="#"><i class="fas fa-thermometer-three-quarters"></i>Temperature</a></li>
+            <li><a href="#"><i class="fas fa-thermometer-three-quarters"></i>75 F</a></li>
             <li><a href="#"><i class="fas fa-cloud"></i>Weather</a></li>
             <li><a href="#"><i class="fas fa-cloud-sun-rain"></i>Precipitation</a></li>
         </ul>
@@ -23,5 +23,40 @@
         <div class = "header">DASHBOARD</div>
     </div>
 </div>
+<div class = "search">
+    <h2>Search</h2>
+</div> 
+<div style="float:right; padding-right: 100px; padding-top: 5%;">
+    <img src="grape.jpg" alt="Plant Sample" width="400"> 
+</div>
+<div class = "info">
+    <ul>
+        <h2>Crop Name<i onclick="myFunction(this)" class="far fa-star fa-xs"></i> </h2>
+        
+     <script>
+            function myFunction(x){
+                x.classList.toggle("fas");
+            }
+        </script>
+        <li>Season: </li>
+        <li>Location: </li>
+        <li>Time period (plant-harvest): </li>
+        <li>Sunlight: </li>
+        <li>Maintenance: </li>
+
+    </ul>
+    
+</div>
+
+<div class = "crops">
+    <h2><a href="#">Your Crops</a></h2>
+</div>
+<div class = "logout">
+    <h2>Logout</h2>
+</div>
+
+
 </body>
+
+
 </html>
