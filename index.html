@@ -53,13 +53,13 @@
           var phoneNumber = user.phoneNumber;
           var providerData = user.providerData;
           user.getIdToken().then(function(accessToken) {
-            document.querySelector("button").innerHTML = '<img src="aicon.svg" alt="A" class="gamepad" /> Go to Dashboard';
-            document.querySelector("button").onclick = function() {
+            document.querySelector("#loginbtn").innerHTML = '<img src="aicon.svg" alt="A" class="gamepad" /> Go to Dashboard';
+            document.querySelector("#loginbtn").onclick = function() {
               window.location.href = "dashboard.html";
             }
           });
         } else {
-          document.querySelector("button").onclick = function() {
+          document.querySelector("#loginbtn").onclick = function() {
             window.location.href = "login.html";
           }
         }
@@ -94,7 +94,7 @@
   </div>
   <div style="float:right;">
     <h2>Get started now for FREE!</h2>
-    <button><img src="aicon.svg" alt="A" class="gamepad" /> Sign up now!</button>
+    <button id="loginbtn"><img src="aicon.svg" alt="A" class="gamepad" /> Sign up now!</button>
   </div>
   <br /><br /><br />
   <article class="cleared art-no5" id="about" style="display:none;">
