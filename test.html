@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript">
+    function go() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://api.myfarmapp.tk/api/v1/' + document.querySelector('#url').value + '?token=' + document.querySelector('#token').value, true);
+      xhr.onload = function() {
+        console.log(xhr.data);
+      };
+      xhr.send(null);
+    }
+  </script>
+  <title>Test API</title>
+</head>
+
+<body>
+  <input type="text" id="token" value="token">
+  <input type="text" id="url" value="url minus /api/">
+  <button onclick="go()">Go</button>
+</body>
+
+</html>
