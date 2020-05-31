@@ -3,8 +3,9 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="css/dash.css">
   <title>MyFarm</title>
+  <link rel="stylesheet" href="css/dash.css">
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
@@ -75,30 +76,103 @@
   </script>
 </head>
 
-<body>
-  <aside class="mdc-drawer">
-    <div class="mdc-drawer__content">
-      <nav class="mdc-list">
-        <a class="mdc-list-item mdc-list-item--activated" href="#" aria-current="page">
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
-          <span class="mdc-list-item__text">Home</span>
-        </a>
-        <a class="mdc-list-item" href="desktop.html">
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">desktop_windows</i>
-          <span class="mdc-list-item__text">Desktop App</span>
-        </a>
-        <a class="mdc-list-item" onclick="firebase.auth().signOut();">
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">exit_to_app</i>
-          <span class="mdc-list-item__text">Log Out</span>
-        </a>
-        <a class="mdc-list-item" href="loc.html">
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">my_location</i>
-          <span class="mdc-list-item__text">Change Location</span>
-        </a>
-      </nav>
+<body onload="getData()">
+  <div class="wrapper">
+    <div class="sidebar">
+      <h1>MyFarm</h1>
+      <ul>
+        <li><a href="#"><i class="fas fa-thermometer-three-quarters"></i>75 F</a></li>
+        <li><a href="#"><i class="fas fa-cloud"></i>Weather</a></li>
+        <li><a href="#"><i class="fas fa-cloud-sun-rain"></i>Precipitation</a></li>
+      </ul>
     </div>
-  </aside>
-  <h1>Welcome to MyFarm, <span class="name"></span>!</h1>
+    <div class="main_content">
+      <div class="header"></div>
+    </div>
+  </div>
+  <div class="search">
+    <input type="search" id="plantSearch" name="q" placeholder="Search" onkeypress="searchForPlant()">
+  </div>
+  <div style="float:right; padding-right: 100px; padding-top: 5%;">
+    <img src="grape.jpg" alt="Plant Sample" width="400">
+  </div>
+  <div class="info">
+    <div class="label">
+      <h1>Welcome to MyFarm, <span class="name"></span></h1><hr />
+      <h2 id="nameTitle">Crop Name </h2>
+      <i onclick="myFunction(this)" class="far fa-star fa-2x"></i>
+    </div>
+    <script>
+      function myFunction(x) {
+        x.classList.toggle("fas");
+      }
+    </script>
+    <ul>
+      <li>Season: </li>
+      <li>Location: </li>
+      <li>Time period (plant-harvest): </li>
+      <li>Sunlight: </li>
+      <li>Maintenance: </li>
+
+    </ul>
+
+  </div>
+
+  <div class="crops">
+    <h2><a href="#">Your Crops</a></h2>
+  </div>
+  <div class="logout">
+    <h2><a href="#" onclick="firebase.auth().signOut()">Logout</a></h2>
+  </div>
+
+
 </body>
+
+<head>
+  <script>
+    function getData() {
+      const API_KEY = '1b7e4b6fa70a61a386aef0171dab7175';
+
+
+      const request = async url => {
+        const reponse = await fetch(url);
+        return response.ok ? response.json() : Promise.reject({
+          error: 500
+        });
+      };
+
+      const getWeatherInfo = async (element, form) => {
+        try {
+          const q = document.getElementById("plantSearch").value;
+          const url = `https://api.openweathermap.org/data/2.5/weather?q=${q}&appid=${API_KEY}`;
+          const response = await request(url);
+          element.innerText = JSON.stringify(response);
+
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('#form');
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          getWeatherInfo(document.querySelector('#results'), form);
+        }, false);
+      });
+    }
+
+    function searchForPlant() {
+
+      var plant = document.getElementById("plantSearch");
+      plant.addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          document.getElementById("nameTitle").innerText = document.getElementById("plantSearch").value;
+        }
+      });
+
+    }
+  </script>
+</head>
 
 </html>

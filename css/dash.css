@@ -1,25 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC');
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
 
 .gamepad {
   display: none;
-}
-
-body {
-  text-align: center;
-  padding: 10px;
-  font-family: 'Oswald', sans-serif;
-}
-
-h1 {
-  color: #00a1de;
-}
-
-h2 {
-  color: #009b3a;
-}
-
-h3 {
-  color: #c60c30;
 }
 
 #firebaseui-auth-container {
@@ -30,7 +15,166 @@ h3 {
   margin: auto;
 }
 
-:root {
-  mdc-theme--primary: #00a1de;
-  mdc-theme--primary-bg	: #009b3a;
+body {
+  background: white;
+}
+
+.wrapper {
+  display: flex;
+  position: relative;
+}
+
+.wrapper .sidebar {
+  position: fixed;
+  width: 200px;
+  height: 100%;
+  background: #009b3a;
+  padding: 30px 0;
+}
+
+.wrapper .sidebar h1 {
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: 'Major Mono Display', monospace;
+  font-size: 30px;
+}
+
+.wrapper .sidebar ul li {
+  font-family: 'Oswald', sans-serif;
+  padding: 50px;
+  padding-left: 10px;
+  font-size: 20px;
+  border-bottom: 1 px solid rgba(0, 0, 0, 0, 0.05);
+  border-top: 1px solid rgba(225, 225, 225, 0.05);
+  list-style-type: none;
+  text-decoration-color: white;
+}
+
+.wrapper .sidebar ul li a {
+  color: white;
+  display: block;
+  text-decoration: none;
+}
+
+.wrapper .sidebar ul li a .fas {
+  width: 25px;
+}
+
+.wrapper .sidebar ul li:hover {
+  background: #009236;
+}
+
+.wrapper .sidebar ul li:hover a {
+  color: white;
+}
+
+.search {
+  margin-top: 2%;
+}
+
+.search input {
+  background-color: rgb(255, 234, 234);
+  border-radius: 10px;
+  font-family: 'Oswald', sans-serif;
+  color: black;
+  font-size: 20px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  letter-spacing: 5px;
+  font-weight: 100;
+  width: 20%;
+  position: relative;
+  left: 250px;
+  border-style: none;
+}
+
+.search input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search input:-webkit-search-- {
+  -webkit-appearance: none;
+}
+
+.search input:hover {
+  background-color: rgb(250, 202, 202);
+}
+
+.search input::placeholder {
+  color: black;
+}
+
+.crops h2 a {
+  color: black;
+  font-family: 'Oswald', sans-serif;
+  position: absolute;
+  font-size: 20px;
+  top: 4%;
+  right: 15%;
+  letter-spacing: 2px;
+  font-stretch: ultra-expanded;
+  text-decoration: none;
+}
+
+.logout h2 a {
+  color: black;
+  font-family: 'Oswald', sans-serif;
+  position: absolute;
+  font-size: 20px;
+  top: 4%;
+  right: 15%;
+  letter-spacing: 2px;
+  font-stretch: ultra-expanded;
+  text-decoration: none;
+}
+
+.info {
+  padding-top: 30px;
+}
+
+.info ul li {
+  color: black;
+  font-family: 'Raleway', sans-serif;
+  padding: 15px;
+  padding-left: 20%;
+  list-style-type: none;
+  text-decoration-color: white;
+}
+
+.info .label {
+  display: inline-block;
+  width: 400px;
+  margin-left: 20%;
+  margin-top: 20px;
+}
+
+.info .label h2, h1 {
+  display: inline;
+  color: black;
+  font-family: 'Amatic SC', sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.info .label i {
+  display: inline;
+  cursor: pointer;
+  padding-left: 30%;
+  user-select: none;
+}
+
+.logout h2 {
+  color: black;
+  font-family: 'Oswald', sans-serif;
+  position: absolute;
+  font-size: 20px;
+  top: 1.25%;
+  right: 5%;
+  letter-spacing: 2px;
+  font-stretch: ultra-expanded;
+  text-decoration: none;
+  cursor: pointer;
 }
