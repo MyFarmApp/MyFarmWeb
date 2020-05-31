@@ -5,23 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="farm.js" charset="utf-8"></script>
   <script type="text/javascript">
-    function go() {
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'https://api.myfarmapp.tk/api/v1/' + document.querySelector('#url').value + '?token=' + document.querySelector('#token').value, true);
-      xhr.onload = function() {
-        console.log(xhr.data);
-      };
-      xhr.send(null);
-    }
+    var f = new Farm("plants", "kingdoms");
   </script>
   <title>Test API</title>
 </head>
 
 <body>
-  <input type="text" id="token" value="token">
-  <input type="text" id="url" value="url minus /api/">
-  <button onclick="go()">Go</button>
 </body>
 
 </html>
