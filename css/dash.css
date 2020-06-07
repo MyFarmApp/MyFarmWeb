@@ -178,3 +178,9 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
+
+@media (max-width: 1024px) {
+  .sidebar {
+    display: none;
+  }
+}
