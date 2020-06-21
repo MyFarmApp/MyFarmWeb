@@ -43,7 +43,7 @@ body {
 
 .wrapper .sidebar ul li {
   font-family: 'Oswald', sans-serif;
-  padding: 50px;
+  padding: 40px;
   padding-left: 10px;
   font-size: 20px;
   border-bottom: 1 px solid rgba(0, 0, 0, 0, 0.05);
@@ -52,11 +52,22 @@ body {
   text-decoration-color: white;
 }
 
-.wrapper .sidebar ul li a {
+.wrapper .sidebar ul li{
   color: white;
   display: block;
   text-decoration: none;
+
 }
+.wrapper .sidebar ul li h6{
+  color: white;
+  display: block;
+  text-decoration: none;
+  display: inline-block;
+  padding-left: 5%;
+  font-family: 'Oswald', sans-serif;
+
+}
+
 
 .wrapper .sidebar ul li a .fas {
   width: 25px;
