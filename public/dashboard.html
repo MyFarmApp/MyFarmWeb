@@ -73,20 +73,21 @@
       });
     };
 
-    window.addEventListener('load', function() {
+    /*window.addEventListener('load', function() {
       initApp();
-    });
+    });*/
   </script>
 </head>
 
 <body onload="getData()">
+  
   <div class="wrapper">
     <div class="sidebar">
       <h1>MyFarm</h1>
       <ul>
-        <li><a href="#"><i class="fas fa-thermometer-three-quarters"></i>75 F</a></li>
-        <li><a href="#"><i class="fas fa-cloud"></i>Weather</a></li>
-        <li><a href="#"><i class="fas fa-cloud-sun-rain"></i>Precipitation</a></li>
+        <li><i class="fas fa-thermometer-three-quarters"></i><h6 id = "temperature"></h6></li>
+        <li><i class="fas fa-cloud"></i><h6 id = "uv"></h6></li>
+        <li><i class="fas fa-cloud-sun-rain"></i><h6 id = "precipitation"></h6></li>
       </ul>
     </div>
     <div class="main_content">
@@ -112,11 +113,23 @@
       <li>Time period (plant-harvest): </li>
       <li>Sunlight: </li>
       <li>Maintenance: </li>
-
     </ul>
 
   </div>
-
+  <script>
+   
+    fetch('http://api.weatherstack.com/current?access_key=dc9db6d6e2d05fd73bf8893f6c88c0fc&query=San+Diego').then(function(response){
+      return response.json();
+    }).then(function(obj){
+      document.getElementById("temperature").innerHTML=obj.current.temperature + "C";
+      document.getElementById("uv").innerHTML="UV Index: " + obj.current.uv_index;
+      document.getElementById("precipitation").innerHTML="Precipitation chance: " + obj.current.precip;
+    }).catch(function(error){
+      console.error('Something went wrong...');
+      consol.error(error);
+    })
+   
+  </script>
   <div class="crops">
     <h2><a href="favs.html">Your Crops</a></h2>
   </div>
