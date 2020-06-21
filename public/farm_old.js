@@ -1,4 +1,3 @@
-// farm.js 1.2 - Copyright 2020 The MyFarm Project Authors
 class Farm {
   constructor(namespace, path) {
     return (async () => {
