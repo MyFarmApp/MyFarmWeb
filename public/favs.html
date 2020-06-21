@@ -2,23 +2,47 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <title>MyFarm</title>
-  <link rel="stylesheet" href="css/dash.css">
-  <script src="getdata.js" charset="utf-8"></script>
-  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
-  <script src="https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js" charset="utf-8"></script>
-  <script src="gamepad.js" charset="utf-8"></script>
-  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-  <script>
-    var db;
+	<meta charset="UTF-8">
+	<title>MyFarm</title>
+	<link rel="stylesheet" href="css/dash.css">
+	<script src="getdata.js" charset="utf-8">
+
+	</script>
+	<script src="https://kit.fontawesome.com/b99e675b6e.js">
+
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js">
+
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js">
+
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js">
+
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js">
+
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js">
+
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-storage.js">
+
+	</script>
+	<script src="https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js" charset="utf-8">
+
+	</script>
+	<script src="gamepad.js" charset="utf-8">
+
+	</script>
+	<link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js">
+
+	</script>
+	<script>
+		var db;
+		var store;
     const gamepad = new Gamepad();
     Mousetrap.bind('up up down down left right left right b a enter', function() {
       alert("BEEP");
@@ -42,14 +66,18 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
     db = firebase.firestore();
-  </script>
-  <script type="text/javascript">
-    var uid;
+		store = firebase.storage().ref();
+
+	</script>
+	<script type="text/javascript">
+		var uid;
+		var email;
+		var displayName;
     initApp = function() {
       firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
-            var displayName = user.displayName;
-            var email = user.email;
+            displayName = user.displayName;
+            email = user.email;
             var emailVerified = user.emailVerified;
             var photoURL = user.photoURL;
             uid = user.uid;
@@ -86,17 +114,65 @@
     window.addEventListener('load', function() {
       initApp();
     });
-  </script>
+		function exp(){
+			var favs = document.querySelector(".favs").innerHTML;
+			favs = favs.replace("<ul>", "");
+			favs = favs.replace("</ul>", "");
+			favs = favs.replace(/<li>/g, "");
+			favs = favs.split("</li>");
+			console.log(favs);
+			var jsondata = JSON.stringify({
+				user: {
+					displayname: displayName,
+					email: email
+				},
+				crops: favs
+			});
+			var blob = new Blob([jsondata], {type: "application/json"});
+			var storeput = store.child(uid + ".json").put(blob);
+			storeput.on(firebase.storage.TaskEvent.STATE_CHANGED,
+				function(snapshot) {
+					var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+					console.log('Upload is ' + progress + '% done');
+					switch (snapshot.state) {
+						case firebase.storage.TaskState.PAUSED:
+							console.log('Upload is paused');
+							break;
+						case firebase.storage.TaskState.RUNNING:
+							console.log('Upload is running');
+							break;
+					}
+				}, function(error) {
+				switch (error.code) {
+					case 'storage/unauthorized':
+						alert("Authorization error. Are you " + displayName + "?");
+						break;
+
+					case 'storage/canceled':
+						alert("Upload cancelled.")
+						break;
+
+					case 'storage/unknown':
+						alert("Unknown error.")
+						break;
+				}
+			}, function() {
+				alert("Done! Use the MFDid: " + uid + " to access.");
+			});
+			
+		}
+	</script>
 </head>
 
 <body onload="getData()">
-  <div class="wrapper">
-    <div class="sidebar">
-      <h1>MyFarm</h1>
-      <ul>
-        <li><a href="#"><i class="fas fa-thermometer-three-quarters"></i>75 F</a></li>
+	<div class="wrapper">
+		<div class="sidebar">
+			<h1>MyFarm</h1>
+			<ul>
+				<li><a href="#"><i class="fas fa-thermometer-three-quarters"></i>75 F</a></li>
         <li><a href="#"><i class="fas fa-cloud"></i>Weather</a></li>
         <li><a href="#"><i class="fas fa-cloud-sun-rain"></i>Precipitation</a></li>
+				<li><button onclick="exp()">Export</button></li>
       </ul>
     </div>
     <div class="main_content">
