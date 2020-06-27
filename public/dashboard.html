@@ -2,33 +2,48 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <title>MyFarm</title>
-  <link rel="stylesheet" href="css/dash.css">
-  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-  <script src="getdata.js" charset="utf-8"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
-  <script src="https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js" charset="utf-8"></script>
-  <script src="gamepad.js" charset="utf-8"></script>
-  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-  <script>
-    var db;
-    const gamepad = new Gamepad();
-    Mousetrap.bind('up up down down left right left right b a enter', function() {
-      alert("BEEP");
-    });
-    gamepad.on('connect', () => {
-      document.querySelector(".gamepad").style.display = "block";
-    });
-    gamepad.on('disconnect', () => {
-      document.querySelector(".gamepad").style.display = "none";
-    });
+	<meta charset="UTF-8">
+	<title>MyFarm</title>
+	<link rel="stylesheet" href="css/dash.css">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js">
+
+	</script>
+	<script src="getdata.js" charset="utf-8">
+
+	</script>
+	<script src="search.js" charset="utf-8" defer>
+
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js">
+
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js">
+
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js">
+
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js">
+
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js">
+
+	</script>
+	<script src="https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js" charset="utf-8">
+
+	</script>
+	<script src="gamepad.js" charset="utf-8">
+
+	</script>
+	<link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js">
+
+	</script>
+	<script>
+		var uid;
+		var db;
+    initApp = function() {
     var firebaseConfig = {
       apiKey: "AIzaSyD1yoAFtxFUADWtuKznOKuYdzz0-l0PNHM",
       authDomain: "myfarmapp.tk",
@@ -42,10 +57,6 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
     db = firebase.firestore();
-  </script>
-  <script type="text/javascript">
-    var uid;
-    initApp = function() {
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           var displayName = user.displayName;
@@ -76,78 +87,43 @@
     window.addEventListener('load', function() {
       initApp();
     });
-  </script>
+	</script>
 </head>
 
 <body onload="getData()">
-  
-  <div class="wrapper">
-    <div class="sidebar">
-      <h1>MyFarm</h1>
-      <ul>
-        <li><i class="fas fa-thermometer-three-quarters"></i><h6 id = "temperature"></h6></li>
+	<div class="loader">Loading...</div>
+	<div class="page">
+		<div class="wrapper" style="display: none;">
+			<div class="sidebar">
+				<h1>MyFarm</h1>
+				<ul>
+					<li><i class="fas fa-thermometer-three-quarters"></i><h6 id = "temperature"></h6></li>
         <li><i class="fas fa-cloud"></i><h6 id = "uv"></h6></li>
         <li><i class="fas fa-cloud-sun-rain"></i><h6 id = "precipitation"></h6></li>
       </ul>
     </div>
     <div class="main_content">
-      <div class="header"></div>
-    </div>
-  </div>
-  <div class="search">
-    <input type="search" id="plantSearch" name="q" placeholder="Search" onkeypress="searchForPlant()">
-  </div>
-  <div style="float:right; padding-right: 100px; padding-top: 5%;">
-    <img src="grape.jpg" alt="Plant Sample" width="400">
-  </div>
+        <div style="float:right; padding-right: 100px; padding-top: 5%;">
   <div class="info">
     <div class="label">
       <h1>Welcome to MyFarm, <span class="name"></span></h1>
+			<h1 id="nameTitle"></h1>
       <hr />
-      <h2 id="nameTitle">Crop Name </h2>
-      <i onclick="star(this)" class="far fa-star fa-2x"></i>
+      <div class="search"></div>
     </div>
-    <ul>
-      <li>Season: </li>
-      <li>Location: </li>
-      <li>Time period (plant-harvest): </li>
-      <li>Sunlight: </li>
-      <li>Maintenance: </li>
-    </ul>
-
-  </div>
-  <script>
-   
-    fetch('http://api.weatherstack.com/current?access_key=dc9db6d6e2d05fd73bf8893f6c88c0fc&query=San+Diego').then(function(response){
-      return response.json();
-    }).then(function(obj){
-      document.getElementById("temperature").innerHTML=obj.current.temperature + "C";
-      document.getElementById("uv").innerHTML="UV Index: " + obj.current.uv_index;
-      document.getElementById("precipitation").innerHTML="Precipitation chance: " + obj.current.precip;
-    }).catch(function(error){
-      console.error('Something went wrong...');
-      consol.error(error);
-    })
-   
-  </script>
   <div class="crops">
     <h2><a href="favs.html">Your Crops</a></h2>
   </div>
   <div class="logout">
     <h2><a href="#" onclick="firebase.auth().signOut()">Logout</a></h2>
   </div>
+    </div>
+  </div>
+	</div>
+		</div>
+	</div>
 
 
 </body>
-  <script>
-    function star(x) {
-      x.classList.toggle("fas");
-      var favref = db.collection(uid).doc("favorites");
-      var cropnm = document.querySelector('#nameTitle').innerHTML;
-      console.log(cropnm);
-      favref.set({[cropnm]: true}, {merge: true});
-      alert("This crop has been added to your favorites!")
-    }
-  </script>
 
 </html>
