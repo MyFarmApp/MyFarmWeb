@@ -86,9 +86,9 @@ body {
   padding-bottom: 10px;
   letter-spacing: 5px;
   font-weight: 100;
-  width: 20%;
+  width: 80%;
   position: relative;
-  left: 250px;
+  right: 700px;
   border-style: none;
 }
 
