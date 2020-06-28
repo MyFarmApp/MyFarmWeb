@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /, /index.html, /index
+Disallow: /dashboard, /dashboard.html, /favs, /favs.html, login, login.html, /test, /test.html. /yard, /yard.html
