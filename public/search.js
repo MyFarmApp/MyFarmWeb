@@ -1,4 +1,4 @@
-fetch("https://cors-anywhere.herokuapp.com/growstuff.org/crops.json")
+fetch("https://cors-anywhere--samuelblue.repl.co/growstuff.org/crops.json")
 	.then(response => response.json())
 	.then(data => {
     var output = "";
@@ -10,7 +10,7 @@ fetch("https://cors-anywhere.herokuapp.com/growstuff.org/crops.json")
 		var plant = document.querySelector("#plantSearch");
 		plant.addEventListener("keypress", function (event) {
 			if (event.keyCode === 13) {
-				fetch("https://cors-anywhere.herokuapp.com/growstuff.org/crops/" + document.getElementById("plantSearch").value.toLowerCase() + ".json")
+				fetch("https://cors-anywhere--samuelblue.repl.co/growstuff.org/crops/" + document.getElementById("plantSearch").value.toLowerCase() + ".json")
 					.then(response => response.json())
   				.then(data => {
 						document.querySelector(".label").style.display = "block";
