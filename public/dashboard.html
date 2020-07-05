@@ -2,97 +2,103 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<title>MyFarm</title>
-	<link rel="stylesheet" href="css/dash.css">
-	<script src="https://kit.fontawesome.com/b99e675b6e.js">
+  <meta charset="UTF-8">
+  <title>MyFarm</title>
+  <link rel="stylesheet" href="css/dash.css">
+  <script src="https://kit.fontawesome.com/b99e675b6e.js">
 
-	</script>
-	<script src="getdata.js" charset="utf-8">
+  </script>
+  <script src="getdata.js" charset="utf-8">
 
-	</script>
-	<script src="search.js" charset="utf-8" defer>
+  </script>
+  <script src="search.js" charset="utf-8" defer>
 
-	</script>
-	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js">
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js">
 
-	</script>
-	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js">
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js">
 
-	</script>
-	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js">
-	</script>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js">
+  </script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-	</script>
-	<script>
-		var uid;
-    initApp = function() {
-    var firebaseConfig = {
-      apiKey: "AIzaSyD1yoAFtxFUADWtuKznOKuYdzz0-l0PNHM",
-      authDomain: "myfarmapp.tk",
-      databaseURL: "https://myfarmapp-crops.firebaseio.com",
-      projectId: "myfarmapp-crops",
-      storageBucket: "myfarmapp-crops.appspot.com",
-      messagingSenderId: "312486482612",
-      appId: "1:312486482612:web:6f319cc3281759cf367de1",
-      measurementId: "G-K5MRECZWK9"
-    };
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-      firebase.auth().onAuthStateChanged(function(user) {
+  </script>
+  <script>
+    var uid;
+    initApp = function () {
+      var firebaseConfig = {
+        apiKey: "AIzaSyD1yoAFtxFUADWtuKznOKuYdzz0-l0PNHM",
+        authDomain: "myfarmapp.tk",
+        databaseURL: "https://myfarmapp-crops.firebaseio.com",
+        projectId: "myfarmapp-crops",
+        storageBucket: "myfarmapp-crops.appspot.com",
+        messagingSenderId: "312486482612",
+        appId: "1:312486482612:web:6f319cc3281759cf367de1",
+        measurementId: "G-K5MRECZWK9"
+      };
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+      firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
           document.querySelector('.name').innerHTML = user.displayName.split(" ")[0];
         } else {
           window.location.href = "login.html";
         }
-      }, function(error) {
+      }, function (error) {
         console.log(error);
       });
     };
 
-    window.addEventListener('load', function() {
-      initApp();
-    });
-	</script>
+     window.addEventListener('load', function() {
+       initApp();
+     });
+  </script>
 </head>
 
 <body onload="getData()">
-	<div class="loader">Loading...</div>
-	<div class="page">
-		<div class="wrapper" style="display: none;">
-			<div class="sidebar">
-				<h1>MyFarm</h1>
-				<ul>
-					<li><i class="fas fa-thermometer-three-quarters"></i><h6 id = "temperature"></h6></li>
-        <li><i class="fas fa-cloud"></i><h6 id = "uv"></h6></li>
-        <li><i class="fas fa-cloud-sun-rain"></i><h6 id = "precipitation"></h6></li>
-      </ul>
+  <div class="loader">Loading...</div>
+  <div class="page">
+    <div class="wrapper" style="display: none;">
+      <div class="sidebar">
+        <h1>MyFarm</h1>
+        <ul>
+          <li><i class="fas fa-thermometer-three-quarters"></i>
+            <h6 id="temperature"></h6>
+          </li>
+          <li><i class="fas fa-cloud"></i>
+            <h6 id="uv"></h6>
+          </li>
+          <li><i class="fas fa-cloud-sun-rain"></i>
+            <h6 id="precipitation"></h6>
+          </li>
+        </ul>
+      </div>
+      <div class="main_content">
+        <div>
+          <div class="info">
+            <h1>Welcome to MyFarm, <span class="name"></span></h1>
+            <div class="search"></div>
+            <div class="label" style="display:none">
+              <h1 id="nameTitle"></h1>
+              <div src="#" id="plantsvg"></div>
+              <p id="desc"></p>
+              <p>To grow, <span id="grow"></span> and place in <span id="sun">.</span>
+
+            </div>
+
+            <div class="crops">
+              <h2><a href="favs.html">Your Crops</a></h2>
+            </div>
+            <div class="logout">
+              <h2><a href="#" onclick="firebase.auth().signOut()">Logout</a></h2>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="main_content">
-        <div style="float:right; padding-right: 100px; padding-top: 5%;">
-  <div class="info">
-    <div class="label" style="display:none">
-      <h1>Welcome to MyFarm, <span class="name"></span></h1>
-			<hr />
-				<h1 id="nameTitle"></h1>
-				<div src="#" id="plantsvg"></div>
-				<p id="desc"></p>
-				<p>To grow, <span id="grow"></span> and place in <span id="sun">.</span>
-      <hr />
-    </div>
-	  <div class="search" style="width:100%"></div>
-  <div class="crops">
-    <h2><a href="favs.html">Your Crops</a></h2>
   </div>
-  <div class="logout">
-    <h2><a href="#" onclick="firebase.auth().signOut()">Logout</a></h2>
-  </div>
-    </div>
-  </div>
-	</div>
-		</div>
-	</div>
 
 
 </body>
