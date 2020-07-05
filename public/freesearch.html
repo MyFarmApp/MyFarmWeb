@@ -26,7 +26,7 @@
 		var pair = vars[i].split('=');
 		params[pair[0]] = decodeURIComponent(pair[1]);
 	}
-		fetch("https://cors-anywhere.herokuapp.com/growstuff.org/crops/" + params.q.toLowerCase() + ".json")
+		fetch("https://cors-anywhere--samuelblue.repl.co/growstuff.org/crops/" + params.q.toLowerCase() + ".json")
 		  .then(response => response.json())
   		.then(function(data){
 				document.querySelector("#message").innerHTML = data.scientific_names[0].name + " (" + data.name + ")";
@@ -81,13 +81,13 @@
           var phoneNumber = user.phoneNumber;
           var providerData = user.providerData;
           user.getIdToken().then(function(accessToken) {
-            document.querySelector("button").innerHTML = '<img src="aicon.svg" alt="A" class="gamepad" /> Go to Dashboard';
-            document.querySelector("button").onclick = function() {
+            document.querySelector("#signup").innerHTML = '<img src="aicon.svg" alt="A" class="gamepad" /> Go to Dashboard';
+            document.querySelector("#signup").onclick = function() {
               window.location.href = "dashboard.html";
             }
           });
         } else {
-          document.querySelector("button").onclick = function() {
+          document.querySelector("#signup").onclick = function() {
             window.location.href = "login.html";
           }
         }
@@ -114,9 +114,11 @@
 		<p id="cropdesc"></p>
 		<a href="#" id="cropref">Wikipedia Article</a>
 	</div>
+	<input type="search" id="asearch" value="Search for a plant...">
+		<button type="button" id="submitfree" onclick="window.location.href = 'freesearch.html?q=' + encodeURI(document.querySelector('#asearch').value.toLowerCase());">Search</button>
 	<div style="float:right;">
 		<h2>Like what you see? Get started now for FREE!</h2>
-		<button><img src="aicon.svg" alt="A" class="gamepad" /> Sign up now!</button>
+		<button id="signup"><img src="aicon.svg" alt="A" class="gamepad" /> Sign up now!</button>
   </div>
 </body>
 

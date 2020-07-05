@@ -5,7 +5,7 @@ function getData() {
 			fetch('https://cors-anywhere--samuelblue.repl.co/api.weatherstack.com/current?access_key=dc9db6d6e2d05fd73bf8893f6c88c0fc&query=' + position.coords.latitude + "," + position.coords.longitude).then(function (response) {
 				return response.json();
 			}).then(function (obj) {
-				document.getElementById("temperature").innerHTML = obj.current.temperature + "C";
+				document.getElementById("temperature").innerHTML = (obj.current.temperature * 9/5) + 32 + "F";
 				document.getElementById("uv").innerHTML = "UV Index: " + obj.current.uv_index;
 				document.getElementById("precipitation").innerHTML = "Precipitation chance: " + obj.current.precip;
 			}).catch(function (error) {
