@@ -67,7 +67,6 @@
     firebase.analytics();
     db = firebase.firestore();
 		store = firebase.storage().ref();
-
 	</script>
 	<script type="text/javascript">
 		var uid;
@@ -169,11 +168,16 @@
 		<div class="sidebar">
 			<h1>MyFarm</h1>
 			<ul>
-				<li><a href="#"><i class="fas fa-thermometer-three-quarters"></i>75 F</a></li>
-        <li><a href="#"><i class="fas fa-cloud"></i>Weather</a></li>
-        <li><a href="#"><i class="fas fa-cloud-sun-rain"></i>Precipitation</a></li>
-				<li><button onclick="exp()">Export</button></li>
-      </ul>
+				<li><i class="fas fa-thermometer-three-quarters"></i>
+            <h6 id="temperature"></h6>
+          </li>
+          <li><i class="fas fa-cloud"></i>
+            <h6 id="uv"></h6>
+          </li>
+          <li><i class="fas fa-cloud-sun-rain"></i>
+            <h6 id="precipitation"></h6>
+          </li>
+        </ul>
     </div>
     <div class="main_content">
       <div class="header"></div>
