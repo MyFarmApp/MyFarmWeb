@@ -1,5 +1,6 @@
 # MyFarm
 ## How is our country able to produce so much food?
+![Farmer](https://myfarmapp.tk/hero.jpeg)
 Before technology was invented, farmers worked hours and hours out in the fields.
 Now, we have machines; they become more advanced and are able to save farmers time in the fields, which also helps them to have more produce, but according to the Farm Journal Pulse, about 75% of farmers are still working more than 10 hours a day.
 Most farmers specialize in certain crops and cultivate based on their instinct.
