@@ -7,6 +7,7 @@ Through practice and experience, they may be able to find the most suitable cond
 **But is it enough?**
 There are so many factors that need to be considered in order to produce the best crops, and farmers are too busy to research their plants thoroughly.
 ## Introducing MyFarm
+![MyFarm](hero.png)
 MyFarm is a dashboard that supplies farmers with crop details, from lifespan to amount of sunlight needed, and local data such as the weather, in a seamless interface with minimal distraction.
 ## Why MyFarm?
 You might be thinking, aren’t there already apps out there that are aiming at the same goal?
